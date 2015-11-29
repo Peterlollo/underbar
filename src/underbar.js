@@ -272,6 +272,21 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    var args = Array.prototype.slice.call(arguments);
+    var answer = _.reduce(args, function(start, item) {
+      for(var prop in item) {
+        if(start[prop] === undefined) {
+          start[prop] = item[prop];
+        }
+      }
+      return start;
+    }, {})
+    if(_.every(answer, function(item){
+      typeof item === undefined;
+    })) {
+      return obj;
+    }
+    return answer;
   };
 
 
