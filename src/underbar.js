@@ -255,7 +255,6 @@
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
     var args = Array.prototype.slice.call(arguments);
-    
     var answer = _.reduce(args, function(start, item) {
       for(var prop in item) {
         start[prop] = item[prop];
@@ -268,7 +267,6 @@
       return obj;
     }
     return answer;
-     
   };
 
   // Like extend, but doesn't ever overwrite a key that already
