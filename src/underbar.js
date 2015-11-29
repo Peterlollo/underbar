@@ -231,7 +231,7 @@
         return true;
       }
       return false;
-    }), true)) 
+    }), true))
   };
 
 
@@ -254,6 +254,21 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+    var answer = {};
+    for(var i=0; i<arguments.length; i++) {
+      var addObj = arguments[i];
+      for(var prop in addObj) {
+        answer[prop] = addObj[prop];
+      }
+    }
+    if(_.every(answer, function(item){
+      return item === undefined;
+    })) {
+      return obj;
+    }
+    obj = answer;
+    return obj;
+      
   };
 
   // Like extend, but doesn't ever overwrite a key that already
